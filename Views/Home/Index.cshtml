@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <h1>Welcome to Weezered!</h1>
+    <a href="https://www.youtube.com/watch?v=Kjr7US2Z9aY" target="_blank">
+    <img id="logo" src="https://cdn.discordapp.com/attachments/763035638517334036/1013568108922949672/unknown.png"/></a>
+
+    @if(!Globals.IsLoggedIn){
+        <form method="POST", action="/Home/Register">
+            <input type="text" placeholder="Username" name="Username">
+            <br>
+            <input type="text" placeholder="Password" name="_Password">
+            <br>
+            <input type="submit" value="Register">
+        </form>
+        <form>
+            <input type="text" placeholder="Username" name="Username">
+            <br>
+            <input type="password" placeholder="Password" name="Password">
+            <br>
+            <input type="submit" value="Login">
+        </form>
+    }
+</div>

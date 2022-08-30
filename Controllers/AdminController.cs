@@ -15,9 +15,10 @@ namespace FinalProject.Controllers
         private readonly ILogger<HomeController> _logger;
 
         private readonly IVidDAL dal;
-        public AdminController(ILogger<HomeController> logger)
+        public AdminController(ILogger<HomeController> logger, IVidDAL vidDAL)
         {
             _logger = logger;
+            dal = vidDAL;
         }
 
         public IActionResult AdminPage()

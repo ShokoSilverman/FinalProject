@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    
 }
 
 <div>
@@ -9,9 +10,11 @@
 
     @if(!Globals.IsLoggedIn){
         <form method="POST", action="/Home/Register">
-            <input type="text" placeholder="Username" name="Username">
+            <input type="text" placeholder="Username" name="Username" pattern="[a-zA-Z][a-zA-Z0-9-_]{3,32}">
+            <label>Username must be between 3 and 32 characters</label>
             <br>
-            <input type="text" placeholder="Password" name="_Password">
+            <input type="password" placeholder="Password" name="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+            <label>Password must contain 1 uppercase, 1 lowercase, and 1 number</label>
             <br>
             <input type="submit" value="Register">
         </form>

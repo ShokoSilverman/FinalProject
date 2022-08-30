@@ -46,6 +46,11 @@ namespace FinalProject
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "porkAndBeans",
+                    pattern: "/PorkAndBeans",
+                    defaults: new {controller="Home", action="PorkAndBeans"});
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

@@ -75,3 +75,8 @@ h1{
 #logo{
   width: 20%;
 }
+
+.alert-text{
+  font-size: 200%;
+  color: red;
+}

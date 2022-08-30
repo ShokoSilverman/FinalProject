@@ -16,9 +16,10 @@ namespace FinalProject.Controllers
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IVidDAL vidDAL)
         {
             _logger = logger;
+            dal = vidDAL;
         }
 
         public IActionResult Index()
@@ -31,13 +32,23 @@ namespace FinalProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(String Username, String _Password){
+        public IActionResult Register(String Username, String Password){
             UserPOCO userNew = new UserPOCO();
             userNew.Username = Username;
-            // string tempPass = Password;
-            userNew.Password = _Password;
+            userNew.Password = Password;
+            if(dal.UserNameExists(Username)){
+                return View("Index");
+            }
             dal.AddUser(userNew);
-            return Redirect("/Home/Index");
+            
+            Globals.IsLoggedIn = true;
+            Globals.CurrentUser = userNew;
+            return Redirect("/LoggedIn/ProfilePage");
+        }
+
+
+        public IActionResult PorkAndBeans(){
+            return Redirect("https://www.youtube.com/watch?v=TTG6NDZVqWY");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

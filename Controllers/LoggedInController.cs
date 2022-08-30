@@ -16,14 +16,22 @@ namespace FinalProject.Controllers
 
         private readonly IVidDAL dal;
 
-        public LoggedInController(ILogger<HomeController> logger)
+        public LoggedInController(ILogger<HomeController> logger, IVidDAL vidDAL)
         {
             _logger = logger;
+            dal = vidDAL;
         }
 
-        public IActionResult MyPage()
+        public IActionResult ProfilePage()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult LogIn(String Username, String Password)
+        {
+            
+            return View("ProfilePage");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
